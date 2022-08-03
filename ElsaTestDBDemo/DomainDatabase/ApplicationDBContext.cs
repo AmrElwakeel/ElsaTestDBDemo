@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ElsaTestDBDemo.DomainDatabase.Entites;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElsaTestDBDemo.DomainDatabase
 {
@@ -6,5 +7,7 @@ namespace ElsaTestDBDemo.DomainDatabase
     {
         public ApplicationDBContext(DbContextOptions options) : base(options)
         { }
+
+        public DbSet<Request> Requests { get; set; }
     }
 }

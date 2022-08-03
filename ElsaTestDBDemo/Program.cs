@@ -1,6 +1,7 @@
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.SqlServer;
 using ElsaTestDBDemo.DomainDatabase;
+using ElsaTestDBDemo.WorkFlowContexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +22,10 @@ builder.Services
         .AddHttpActivities(elsaSection.GetSection("Server").Bind)
         //.AddEmailActivities(elsaSection.GetSection("Smtp").Bind)
         //.AddQuartzTemporalActivities()
-        //.AddWorkflowsFrom<Program>()
+        .AddWorkflowsFrom<Program>()
     );
+
+builder.Services.AddWorkflowContextProvider<RequestWorkflowContextProvider>();
 
 // Elsa API endpoints.
 builder.Services.AddElsaApiEndpoints();
